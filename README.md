@@ -13,6 +13,7 @@
 - [5. Git revert)](#gitrevert)
 - [6. Git merge (regularly))](#gitmerge)
 - [7. Git debase)](#gitdebase)
+- [7. Git cherry pick)](#gitcherrypick)
 
 ===========================
 
@@ -283,3 +284,52 @@ git merge source_branch_name
 ```
 <a name="gitdebase"></a>
 ### 7. Git debase
+
+<a name="gitcherrypick"></a>
+### 7. Git cherry-pick
+- The git cherry-pick command allows you to apply specific commits from one branch onto another. This is useful for selectively transferring changes without merging entire branches.
+##### 1. Cherry-picking a Single Commit:
+- To apply a single commit from another branch to your current branch:
+```
+# First, ensure you are on the target branch where you want to apply the commit
+git checkout your_target_branch
+
+# Identify the commit hash (SHA) of the commit you want to cherry-pick.
+# You can find this using `git log` on the source branch.
+# For example, if the commit hash is `abcdef1234567890`
+git cherry-pick abcdef1234567890
+```
+##### 2. Cherry-picking Multiple Commits:
+- To apply multiple specific commits:
+```
+# Ensure you are on the target branch
+git checkout your_target_branch
+
+# Specify the commit hashes in order
+git cherry-pick commit_hash_1 commit_hash_2 commit_hash_3
+```
+
+##### 3. Cherry-picking a Range of Commits:
+- To apply a sequence of commits within a range:
+```
+# Ensure you are on the target branch
+git checkout your_target_branch
+
+# Cherry-pick all commits from `start_commit_hash` (exclusive) up to `end_commit_hash` (inclusive).
+# The `^` indicates the commit *before* the start commit.
+git cherry-pick start_commit_hash^..end_commit_hash
+```
+##### 4. Cherry-picking without Committing Immediately:
+- If you want to apply the changes but not create a new commit immediately, allowing for further modifications before committing:
+```
+# Ensure you are on the target branch
+git checkout your_target_branch
+
+git cherry-pick --no-commit commit_hash
+# Now, the changes are in your working directory.
+# You can modify them, then `git add` and `git commit` as usual.
+```
+##### Important Notes:
+- Conflicts: If the cherry-picked commit introduces changes that conflict with your current branch, Git will pause the operation and require you to resolve the conflicts. After resolving, git add the conflicted files and then run git cherry-pick --continue.
+- Aborting: If you decide to cancel a cherry-pick in progress (e.g., due to unresolvable conflicts), use git cherry-pick --abort.
+- Merge Commits: Cherry-picking a merge commit can be complex. You might need to use the -m or --mainline option to specify which parent of the merge commit represents the "mainline" changes you want to apply. For example: git cherry-pick -m 1 merge_commit_hash

@@ -1,4 +1,4 @@
-# Git & GitHub Guide
+# Markdown language, Git & GitHub Guide
 
 ## Table of Contents
 

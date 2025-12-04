@@ -20,7 +20,9 @@
 
 <a name="Modau"></a>
 ## I. Mở đầu
-- TODO
+Git và Github đã trở thành các công cụ không thể thiếu đối với lập trình viên hiện đại. Việc kiểm soát phiên bản mã nguồn giúp dễ dàng quản lý, chia sẻ, phối hợp cùng đồng đội, và bảo vệ lịch sử phát triển của dự án phần mềm. Từ những thao tác cơ bản đến các kỹ thuật nâng cao, việc nắm vững cách sử dụng Git và Github sẽ giúp bạn chủ động hơn trong quá trình làm việc, đảm bảo chất lượng và hiệu quả của sản phẩm. 
+
+Tài liệu này ra đời nhằm cung cấp cho bạn kiến thức tổng quan về Git, Github và Markdown, cũng như hướng dẫn chi tiết các thao tác thực tế và mẹo hữu ích. Hy vọng bạn sẽ tìm thấy trong đây những kiến thức bổ ích để áp dụng thuận lợi vào các dự án của mình.
 <a name="ngonngumarkdown"></a>
 ## II. Ngôn ngữ Markdown
 

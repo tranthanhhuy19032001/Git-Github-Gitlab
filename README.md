@@ -13,7 +13,8 @@
 - [5. Git revert)](#gitrevert)
 - [6. Git merge (regularly))](#gitmerge)
 - [7. Git debase)](#gitdebase)
-- [7. Git cherry pick)](#gitcherrypick)
+- [8. Git cherry-pick)](#gitcherrypick)
+- [8. Resolve conflicts)](#resolveconflicts)
 
 ===========================
 
@@ -286,7 +287,7 @@ git merge source_branch_name
 ### 7. Git debase
 
 <a name="gitcherrypick"></a>
-### 7. Git cherry-pick
+### 8. Git cherry-pick
 - The git cherry-pick command allows you to apply specific commits from one branch onto another. This is useful for selectively transferring changes without merging entire branches.
 ##### 1. Cherry-picking a Single Commit:
 - To apply a single commit from another branch to your current branch:
@@ -333,3 +334,24 @@ git cherry-pick --no-commit commit_hash
 - Conflicts: If the cherry-picked commit introduces changes that conflict with your current branch, Git will pause the operation and require you to resolve the conflicts. After resolving, git add the conflicted files and then run git cherry-pick --continue.
 - Aborting: If you decide to cancel a cherry-pick in progress (e.g., due to unresolvable conflicts), use git cherry-pick --abort.
 - Merge Commits: Cherry-picking a merge commit can be complex. You might need to use the -m or --mainline option to specify which parent of the merge commit represents the "mainline" changes you want to apply. For example: git cherry-pick -m 1 merge_commit_hash
+
+<a name="resolveconflicts"></a>
+### 9. Resolve conflicts
+- You want to merge a feature branch into a target branch. But, the changes are conflicted. So, how to fix the conflict?
+- To fix a Git merge conflict, you must first identify the conflicting files and then manually edit them to choose which code to keep, deleting the conflict markers (<<<<<<<, =======, >>>>>>>). After saving the changes, you add the files to the staging area with git add . and commit the merge to finalize the process. 
+##### Step 1: Identify conflicting files
+- git status will show a list of files that have unmerged paths.
+- You can also use a merge tool or IDE to help identify these files. 
+##### Step 2: Resolve conflicts in each file
+- Open each conflicting file in your code editor.
+- Search for the conflict markers (<<<<<<<, =======, >>>>>>>) to find the conflicting sections.
+- Edit the code to be the final version you want, which may mean keeping only one change, or combining changes from both branches.
+- Delete the conflict markers (<<<<<<<, =======, >>>>>>>) completely.
+- Save the file. 
+##### Step 3: Stage and commit the changes
+- After resolving all conflicts, stage the modified files using git add .
+- Commit the merge to complete the process by running git commit -m "Your commit message". 
+##### Alternative methods
+- Merge Editor: Many IDEs offer a three-way merge editor that visually shows the conflict and provides buttons to accept one or both versions of the code, making the process easier.
+- Rebasing: For a cleaner history, you can rebase your feature branch onto the target branch instead of merging, which involves resolving conflicts one commit at a time.
+- Using a remote UI: You can resolve conflicts through a platform's web interface, such as GitHub, by clicking "Resolve conflicts" on the pull request and using the provided interface to choose which code to keep, then - clicking "Commit merge". 
